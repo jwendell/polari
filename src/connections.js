@@ -191,6 +191,8 @@ const ConnectionsDialog = new Lang.Class({
             details.port = GLib.Variant.new('u', params.port);
         if (params.fullname)
             details.fullname = GLib.Variant.new('s', params.fullname);
+        if (params.password)
+            details.password = GLib.Variant.new('s', params.password);
 
         let removed = Object.keys(oldDetails).filter(
                 function(p) {
@@ -246,6 +248,8 @@ const ConnectionDetailsDialog = new Lang.Class({
             params.port = port;
         if (this._realnameEntry.text)
             params.fullname = this._realnameEntry.text;
+        if (this._serverPasswordEntry.text)
+            params.password = this._serverPasswordEntry.text;
 
         return params;
     },
@@ -258,6 +262,7 @@ const ConnectionDetailsDialog = new Lang.Class({
 
         this._serverEntry = builder.get_object('server_entry');
         this._descEntry = builder.get_object('description_entry');
+        this._serverPasswordEntry = builder.get_object('server_password_entry');
         this._nickEntry = builder.get_object('nickname_entry');
         this._realnameEntry = builder.get_object('realname_entry');
         this._confirmButton = builder.get_object('confirm_button');
